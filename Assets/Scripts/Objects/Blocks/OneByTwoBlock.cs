@@ -8,8 +8,33 @@ public class OneByTwoBlock : MonoBehaviour, IObject
 
     public CellObject cellType { get => CellObject.BLOCK; set { } }
 
-    public void InitializeObject()
+    private Grid _pivotCell;
+
+    public Grid pivotCell { get => _pivotCell; set => _pivotCell = value; }
+
+    GridSystem gridSystem;
+
+    [SerializeField] GameObject EditCanvas;
+
+    public void ActivateEdit()
     {
+        EditCanvas.SetActive(true);
+    }
+
+    public void DeActivateEdit()
+    {
+        EditCanvas.SetActive(false);
+    }
+
+    bool isInitialized;
+    public void InitializeObject(GridSystem gridSystem)
+    {
+        if (isInitialized) return;
+
+        isInitialized = true;
+
+
+        this.gridSystem = gridSystem;
         Debug.Log("object initialized");
     }
 

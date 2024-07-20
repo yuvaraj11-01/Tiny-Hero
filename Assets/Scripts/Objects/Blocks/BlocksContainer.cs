@@ -41,5 +41,7 @@ public enum BlockType
     TWO_TWO,
     THREE_THREE,
     ONE_TWO,
-    TWO_ONE
+    TWO_ONE,
+    ONE_ONE_SOURCE,
+    ONE_ONE_ENDPOINT
 }

@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Selector: {fileID: 1189539444}
-  _object: {fileID: 7087526470933499167, guid: 4fb0337a47ffbb74fa4399597ccf38d4, type: 3}
-  gameManager: {fileID: 519420033}
+  _object: {fileID: 7087526470933499167, guid: 8a39098f05dc34d71a5caf359ac01389, type: 3}
+  puzzle: {fileID: 596391257}
 --- !u!114 &337343940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &512811719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Selector: {fileID: 1189539444}
   _object: {fileID: 7087526470933499167, guid: 6374de2e2c24be1408dffcff822aa6a6, type: 3}
-  gameManager: {fileID: 519420033}
+  puzzle: {fileID: 596391257}
 --- !u!114 &512811722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25c60faeb0cf8c74db93541310a8b47f, type: 3}
   m_Name: 
@@ -592,6 +592,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
+--- !u!1 &596391256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 596391258}
+  - component: {fileID: 596391257}
+  m_Layer: 0
+  m_Name: EnergyPuzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &596391257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596391256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f03c527c9a7d429cadab2eaac039fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refObjectPrefab: {fileID: 7087526470933499167, guid: 8a39098f05dc34d71a5caf359ac01389, type: 3}
+  cellVisualPrefab: {fileID: 3843067798099377805, guid: 4708e203f106743788722a5908b8483b, type: 3}
+  rows: 5
+  colums: 5
+  gridSize: 1
+  gridPosition: {x: -2.5, y: -2.5, z: 0}
+  levelData: {fileID: 11400000, guid: 07a3eae6714a8481b9f28b39e9bd89bc, type: 2}
+  ObjectsUI: {fileID: 1613768762}
+  SourcePoints:
+  - {x: 0, y: 4}
+  - {x: 4, y: 4}
+  EndPoints:
+  - {x: 0, y: 0}
+  - {x: 2, y: 0}
+--- !u!4 &596391258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596391256}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &739079193
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +669,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &739079194
 RectTransform:
   m_ObjectHideFlags: 0
@@ -674,7 +732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Selector: {fileID: 1189539444}
   _object: {fileID: 7087526470933499167, guid: 3f65012245308497da2ec8b990792c32, type: 3}
-  gameManager: {fileID: 519420033}
+  puzzle: {fileID: 596391257}
 --- !u!114 &739079197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,7 +865,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1522695985
 RectTransform:
   m_ObjectHideFlags: 0
@@ -870,7 +928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Selector: {fileID: 1189539444}
   _object: {fileID: 7087526470933499167, guid: b83c81a5891be3c4eaa42c78422c845a, type: 3}
-  gameManager: {fileID: 519420033}
+  puzzle: {fileID: 596391257}
 --- !u!114 &1522695988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,8 +1048,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Selector: {fileID: 1189539444}
-  _object: {fileID: 7087526470933499167, guid: e921e7567d6024f3b9848760370a95f8, type: 3}
-  gameManager: {fileID: 519420033}
+  _object: {fileID: 7087526470933499167, guid: 6f553d80ca06b4ddc9d511c6d18df146, type: 3}
+  puzzle: {fileID: 596391257}
 --- !u!114 &1567206054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,7 +1105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1613768763
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1186,3 +1244,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 413795064}
   - {fileID: 1922304611}
+  - {fileID: 596391258}

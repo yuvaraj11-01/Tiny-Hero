@@ -41,5 +41,7 @@ public enum ObjectType
     TWO_TWO,
     THREE_THREE,
     ONE_TWO,
-    TWO_ONE
+    TWO_ONE,
+    ONE_TWO_ENERGY,
+    TWO_ONE_ENERGY
 }

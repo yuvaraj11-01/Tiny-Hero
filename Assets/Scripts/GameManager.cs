@@ -23,46 +23,64 @@ public class GameManager : MonoBehaviour
         gridSystem.CreateGrid();
         gridSystem.GridDisplay();
         gridSystem.LoadLevel(levelData);
+        gridSystem.DeActivateEditing();
+
     }
 
+    bool editing = false;
     void Update()
     {
-        gridSystem.ResetVisuals();
+        //gridSystem.ResetVisuals();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            var cell = gridSystem.GetGrid(MouseInput.instance.GetMousePosition());
-            Debug.Log(cell);
-            if (cell != null)
-                if (cell.currentObject == null)
-                {
-                gridSystem.PlaceNewObject(cell.position, refObjectPrefab);
-                }
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            var cell = gridSystem.GetGrid(MouseInput.instance.GetMousePosition());
-            Debug.Log(cell);
-            if (cell != null)
-                if (cell.currentObject != null)
-                {
-                gridSystem.removeObject(cell);                
-                }
-        }
-
-        var hoverCell = gridSystem.GetGrid(MouseInput.instance.GetMousePosition());
-        if(hoverCell != null)
-        {
-            if (hoverCell.currentObject == null)
+            if (!editing)
             {
-                hoverCell.cellVisual.ChangeColor(hoverCell.cellVisual.HoverColor);
+                gridSystem.ActivateEditing();
+                editing = true;
             }
-            else 
+            else
             {
-                hoverCell.cellVisual.ChangeColor(hoverCell.cellVisual.InvalidColor);
+                gridSystem.DeActivateEditing();
+                editing = false;
             }
         }
+
+
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    var cell = gridSystem.GetGrid(MouseInput.instance.GetMousePosition());
+        //    Debug.Log(cell);
+        //    if (cell != null)
+        //        if (cell.currentObject == null)
+        //        {
+        //        gridSystem.PlaceNewObject(cell.position, refObjectPrefab);
+        //        }
+        //}
+
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    var cell = gridSystem.GetGrid(MouseInput.instance.GetMousePosition());
+        //    Debug.Log(cell);
+        //    if (cell != null)
+        //        if (cell.currentObject != null)
+        //        {
+        //        gridSystem.removeObject(cell);                
+        //        }
+        //}
+
+        //var hoverCell = gridSystem.GetGrid(MouseInput.instance.GetMousePosition());
+        //if(hoverCell != null)
+        //{
+        //    if (hoverCell.currentObject == null)
+        //    {
+        //        hoverCell.cellVisual.ChangeColor(hoverCell.cellVisual.HoverColor);
+        //    }
+        //    else 
+        //    {
+        //        hoverCell.cellVisual.ChangeColor(hoverCell.cellVisual.InvalidColor);
+        //    }
+        //}
 
     }
 

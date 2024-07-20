@@ -17,3 +17,7 @@ MonoBehaviour:
     block: {fileID: 7087526470933499167, guid: eabad73b0a20c77458ef8dd2be12ab7d, type: 3}
   - blockType: 4
     block: {fileID: 7087526470933499167, guid: 6e433e9f3ae6b83499d8813faeadf781, type: 3}
+  - blockType: 6
+    block: {fileID: 7087526470933499167, guid: 5236b533764fe40039bfac0db7685aa4, type: 3}
+  - blockType: 7
+    block: {fileID: 7087526470933499167, guid: 88a2fd400d1264b53bfa1fc20db53df7, type: 3}

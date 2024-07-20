@@ -52,6 +52,30 @@ public class GridSystem
         }
     }
 
+    public void ActivateEditing()
+    {
+        foreach (var item in cells)
+        {
+            var _object = item.currentObject?.GetComponent<IObject>();
+            if(_object != null && _object.cellType == CellObject.OBJECT)
+            {
+                _object.ActivateEdit();
+            }
+        }
+    }
+
+    public void DeActivateEditing()
+    {
+        foreach (var item in cells)
+        {
+            var _object = item.currentObject?.GetComponent<IObject>();
+            if (_object != null && _object.cellType == CellObject.OBJECT)
+            {
+                _object.DeActivateEdit();
+            }
+        }
+    }
+
     public void ResetVisuals()
     {
         foreach (var g in cells)
@@ -153,15 +177,19 @@ public class GridSystem
             return;
         }
 
-        PlaceObjectOnCell(cell, _object);
+        var newObject = GameObject.Instantiate(_object);
+
+        PlaceObjectOnCell(cell, newObject);
 
     }
 
-    public void PlaceObjectOnCell(Grid cell, GameObject _object)
+    public void PlaceObjectOnCell(Grid cell, GameObject newObject)
     {
-        var _IObject = _object.GetComponent<IObject>();
+        var _IObject = newObject.GetComponent<IObject>();
         var objectSize = _IObject.objectSize;
-        var newObject = GameObject.Instantiate(_object);
+        _IObject.pivotCell = cell;
+
+
         cell.neighbouringCells = new List<Grid>();
 
         for (int i = (int)cell.position.x; i < objectSize.x + (int)cell.position.x; i++)
@@ -183,6 +211,8 @@ public class GridSystem
         var globalPos = LocalToGlobalPos(cell.position);
 
         newObject.transform.position = globalPos;
+
+        _IObject.InitializeObject(this);
     }
 
     public void removeObject(Grid cell)
@@ -198,7 +228,7 @@ public class GridSystem
         }
     }
 
-    public bool IsPlaceAvailable(Vector2 cellIndex, Vector2 cellSize)
+    public bool IsPlaceAvailable(Vector2 cellIndex, Vector2 cellSize, GameObject ignoreObject = null)
     {
         var max_X = (cellSize.x + cellIndex.x) - 1;
         var max_Y = (cellSize.y + cellIndex.y) - 1;
@@ -210,10 +240,26 @@ public class GridSystem
             for (int j = (int)cellIndex.y; j< cellSize.y + (int)cellIndex.y; j++)
             {
                 var cell = GetCellWithIndex(new Vector2(i,j));
-                if (cell.currentObject != null) return false;
+                if(cell == null) return false;
+                
+                if (cell.currentObject != null && cell.currentObject != ignoreObject) return false;
             }
         }
         return true;
+    }
+
+    public void MoveCellObject(Grid cell, Vector2 newIndex)
+    {
+        var currentObject = cell.currentObject;
+
+        foreach (var item in cell.neighbouringCells)
+        {
+            item.currentObject = null;
+        }
+
+        var newCell = GetCellWithIndex(newIndex);
+
+        PlaceObjectOnCell(newCell, currentObject);
     }
 
     public void LoadLevel(LevelData levelData)
@@ -232,5 +278,31 @@ public class GridSystem
             PlaceNewObject(item.position, newObject.block);
         }
 
+    }
+
+    public List<Grid> GetAllNeighbors(Grid cell)
+    {
+        var res = new List<Grid>();
+        if (cell.currentObject == null) return res;
+
+        var top = cell.position + new Vector2(0, 1);
+        var bottom = cell.position + new Vector2(0, -1);
+        var left = cell.position + new Vector2(-1, 0);
+        var right = cell.position + new Vector2(1, 0);
+
+        var topGrid = GetCellWithIndex(top);
+        if (topGrid != null) res.Add(topGrid);
+
+        var bottomGrid = GetCellWithIndex(bottom);
+        if (bottomGrid != null) res.Add(bottomGrid);
+
+        var leftGrid = GetCellWithIndex(left);
+        if (leftGrid != null) res.Add(leftGrid);
+
+        var rightGrid = GetCellWithIndex(right);
+        if (rightGrid != null) res.Add(rightGrid);
+
+
+        return res;
     }
 }
