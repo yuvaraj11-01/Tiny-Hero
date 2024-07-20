@@ -218,11 +218,19 @@ public class GridSystem
 
     public void LoadLevel(LevelData levelData)
     {
-        foreach(var item in levelData.data)
+        foreach(var item in levelData.blocksData)
         {
             var newObject = levelData.blocks.GetBlock(item.cellType);
 
             PlaceNewObject(item.position, newObject.block);
         }
+
+        foreach (var item in levelData.objectsData)
+        {
+            var newObject = levelData.objects.GetBlock(item.cellType);
+
+            PlaceNewObject(item.position, newObject.block);
+        }
+
     }
 }

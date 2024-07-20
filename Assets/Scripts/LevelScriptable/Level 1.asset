@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   blocks: {fileID: 11400000, guid: dde2cd5c715a3214d8b5094a269414bd, type: 2}
-  data:
-  - position: {x: 1, y: 2}
+  objects: {fileID: 11400000, guid: 815ab3fa2a566435ea0e96383d7e99ed, type: 2}
+  blocksData: []
+  objectsData:
+  - position: {x: 0, y: 0}
     cellType: 1
-  - position: {x: 3, y: 3}
-    cellType: 4
