@@ -10,15 +10,15 @@ public class EnergyPuzzle : MonoBehaviour
     private bool EditingEnabled;
 
     [SerializeField] private GameObject cellVisualPrefab;
-    [SerializeField] private int rows = 7, colums = 7, gridSize = 1;
+    [SerializeField] private int rows = 7, colums = 7;
+    [SerializeField] private float gridSize = 1;
     [SerializeField] private Vector3 gridPosition;
     [SerializeField] private LevelData levelData;
     [SerializeField] private GameObject ObjectsUI;
 
     [SerializeField] private List<Vector2> SourcePoints = new List<Vector2>();
     [SerializeField] private List<Vector2> EndPoints = new List<Vector2>();
-
-
+    [SerializeField] private List<EndPointLink> links = new List<EndPointLink>();
 
     void Start()
     {
@@ -236,4 +236,12 @@ public class EnergyPuzzle : MonoBehaviour
         CalculateEnergy();
     }
 
+
+}
+
+[System.Serializable]
+public struct EndPointLink
+{
+    public Vector2 EndPoint;
+    public GridTerrain gridSystem;
 }

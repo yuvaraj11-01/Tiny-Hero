@@ -12,10 +12,14 @@ public class OneByTwoObject : MonoBehaviour, IObject
     GridSystem gridSystem;
 
     [SerializeField] GameObject EditCanvas;
+    [SerializeField] List<Transform> rayShoots;
 
     private Grid _pivotCell;
 
     public Grid pivotCell { get => _pivotCell; set => _pivotCell = value; }
+
+    public LayerMask collLayer;
+    public float rayDistance = 0.5f;
 
     public void ActivateEdit()
     {
@@ -55,6 +59,33 @@ public class OneByTwoObject : MonoBehaviour, IObject
         Right.onClick.AddListener(OnRightClick);
         Top.onClick.AddListener(OnTopClick);
         Bottom.onClick.AddListener(OnBottomClick);
+
+    }
+    List<GameObject> KnownCollider = new List<GameObject>();
+    public void CheckForColliders()
+    {
+        foreach (var item in KnownCollider)
+        {
+            item.SetActive(true);
+        }
+
+        foreach (var shoot in rayShoots)
+        {
+            var CollUp = Physics2D.Raycast(shoot.position, shoot.up, rayDistance, collLayer);
+            if (CollUp.collider != null)
+            {
+                shoot.transform.GetChild(0).gameObject.SetActive(false);
+                CollUp.collider.gameObject.SetActive(false);
+                if (!KnownCollider.Contains(CollUp.collider.gameObject))
+                {
+                    KnownCollider.Add(CollUp.collider.gameObject);
+                }
+            }
+            else
+            {
+                shoot.transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
 
     }
 
@@ -154,6 +185,9 @@ public class OneByTwoObject : MonoBehaviour, IObject
         if (isInitialized)
         {
             CheckForArrows();
+            CheckForColliders();
         }
     }
+
+
 }

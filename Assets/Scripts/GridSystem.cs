@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 
 public class GridSystem
 {
-    public GridSystem(int _rows, int _columns, int _GridSize, Vector3 _gridPosition)
+    public GridSystem(int _rows, int _columns, float _GridSize, Vector3 _gridPosition)
     {
         rows = _rows;
         columns = _columns;
@@ -47,6 +47,7 @@ public class GridSystem
             var visualObject = GameObject.Instantiate(cellVisualPrefab);
             visualObject.transform.position = LocalToGlobalPos(g.position);
             visualObject.transform.SetParent(CellContainer.transform);
+            visualObject.transform.localScale = Vector3.one * gridSize;
 
             g.cellVisual = visualObject.GetComponent<CellVisual>();
         }
@@ -233,7 +234,7 @@ public class GridSystem
         var max_X = (cellSize.x + cellIndex.x) - 1;
         var max_Y = (cellSize.y + cellIndex.y) - 1;
 
-        if(max_X >= columns || max_Y >= rows) return false;
+        if(max_X >= rows || max_Y >= columns) return false;
 
         for (int i = (int)cellIndex.x; i < cellSize.x + (int)cellIndex.x; i++)
         {
@@ -283,6 +284,7 @@ public class GridSystem
     public List<Grid> GetAllNeighbors(Grid cell)
     {
         var res = new List<Grid>();
+        if (cell == null) return res;
         if (cell.currentObject == null) return res;
 
         var top = cell.position + new Vector2(0, 1);

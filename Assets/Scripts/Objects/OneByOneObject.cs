@@ -9,14 +9,17 @@ public class OneByOneObject : MonoBehaviour, IObject
 
     public CellObject cellType { get => CellObject.OBJECT; set { } }
 
+    GridSystem gridSystem;
+
+    [SerializeField] GameObject EditCanvas;
+    [SerializeField] List<Transform> rayShoots;
+
     private Grid _pivotCell;
 
     public Grid pivotCell { get => _pivotCell; set => _pivotCell = value; }
 
-    GridSystem gridSystem;
-
-    [SerializeField] GameObject EditCanvas;
-
+    public LayerMask collLayer;
+    public float rayDistance = 0.5f;
 
     public void ActivateEdit()
     {
@@ -56,6 +59,30 @@ public class OneByOneObject : MonoBehaviour, IObject
         Right.onClick.AddListener(OnRightClick);
         Top.onClick.AddListener(OnTopClick);
         Bottom.onClick.AddListener(OnBottomClick);
+
+    }
+    List<GameObject> KnownCollider = new List<GameObject>();
+    public void CheckForColliders()
+    {
+        foreach (var item in KnownCollider)
+        {
+            item.SetActive(true);
+        }
+
+        foreach (var shoot in rayShoots)
+        {
+            var CollUp = Physics2D.Raycast(shoot.position, shoot.up, rayDistance, collLayer);
+            if (CollUp.collider != null)
+            {
+                shoot.transform.GetChild(0).gameObject.SetActive(false);
+                CollUp.collider.gameObject.SetActive(false);
+                if (!KnownCollider.Contains(CollUp.collider.gameObject))
+                {
+                    KnownCollider.Add(CollUp.collider.gameObject);
+                }
+            }
+        }
+
     }
 
     public void CheckForArrows()
@@ -106,7 +133,7 @@ public class OneByOneObject : MonoBehaviour, IObject
 
     public void OnLeftClick()
     {
-        var newCellIndex = _pivotCell.position + new Vector2(-1,0);
+        var newCellIndex = _pivotCell.position + new Vector2(-1, 0);
         if (!gridSystem.IsPlaceAvailable(newCellIndex, objectSize, this.gameObject)) return;
 
         gridSystem.MoveCellObject(_pivotCell, newCellIndex);
@@ -137,10 +164,9 @@ public class OneByOneObject : MonoBehaviour, IObject
         gridSystem.MoveCellObject(_pivotCell, newCellIndex);
     }
 
-
     public void TerminateObject()
     {
-        
+        Debug.Log("object terminated");
     }
 
     // Start is called before the first frame update
@@ -155,7 +181,9 @@ public class OneByOneObject : MonoBehaviour, IObject
         if (isInitialized)
         {
             CheckForArrows();
+            CheckForColliders();
         }
     }
+
 
 }

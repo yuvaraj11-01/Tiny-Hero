@@ -567,14 +567,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25c60faeb0cf8c74db93541310a8b47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cellVisualPrefab: {fileID: 3843067798099377805, guid: 4708e203f106743788722a5908b8483b, type: 3}
   refObjectPrefab: {fileID: 7087526470933499167, guid: 4fb0337a47ffbb74fa4399597ccf38d4, type: 3}
-  rows: 7
+  rows: 6
   colums: 7
   gridSize: 1
   gridPosition: {x: -3.5, y: -3.5, z: 0}
@@ -608,7 +608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &596391257
 MonoBehaviour:
   m_ObjectHideFlags: 0

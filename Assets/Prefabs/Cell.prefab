@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5503a1eb599524a2b891aacf198a3ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 1, g: 1, b: 1, a: 0.023529412}
+  defaultColor: {r: 1, g: 1, b: 1, a: 0}
   HoverColor: {r: 0.24056602, g: 1, b: 0.26514333, a: 0.5372549}
   InvalidColor: {r: 1, g: 0, b: 0, a: 0.54901963}
   spriteRenderer: {fileID: 759048479887773021}
@@ -61,6 +61,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3652539333235070139}
   - component: {fileID: 759048479887773021}
+  - component: {fileID: 4346356474433760935}
   m_Layer: 0
   m_Name: Cell Graphics
   m_TagString: Untagged
@@ -125,7 +126,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f4b04a761441d4d86bd0a91991fc2b0f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.078431375}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -135,6 +136,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &4346356474433760935
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495929265560566111}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 356
+  m_SortAtRoot: 0
 --- !u!1 &7903249851228719376
 GameObject:
   m_ObjectHideFlags: 0
